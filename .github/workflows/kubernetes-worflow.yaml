@@ -9,12 +9,6 @@ on:
 #       - 'feature/*'
 
 
-# env:
-#   MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
-#   MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
-#   MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
-
-
 jobs:
 #   unit-testing: … 
 #   code-coverage: … 
@@ -23,6 +17,9 @@ jobs:
     name: docker build
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4.2.2
+      
     - name: Docker Hub Login
       uses: docker/login-action@v2.2.0
       with:
@@ -79,8 +76,8 @@ jobs:
     - name: Create MongoDB secret
       run: |
             kubectl -n ${{ vars.NAMESPACE }} create secret generic mongo-db-creds \
-            --from-literal=MONGO_URI=${{ env.MONGO_URI }} \
-            --from-literal=MONGO_USERNAME=${{ env.MONGO_USERNAME }} \
+            --from-literal=MONGO_URI=${{ vars.MONGO_URI }} \
+            --from-literal=MONGO_USERNAME=${{ vars.MONGO_USERNAME }} \
             --from-literal=MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} \
             --save-config \
             --dry-run=client \
