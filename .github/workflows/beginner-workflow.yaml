@@ -55,6 +55,12 @@ jobs:
           path: test-results.xml
 
   docker-build:
+    name: docker build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4.2.2
+
     - name: Docker Hub Login
       uses: docker/login-action@v2.2.0
       with:
