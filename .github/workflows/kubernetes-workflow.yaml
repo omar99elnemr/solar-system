@@ -37,15 +37,15 @@ jobs:
     needs: docker-build
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4.2.2
 
     - name: Install kubectl CLI
-      uses: azure/setup-kubectl@v3
+      uses: azure/setup-kubectl@v4.0.1
       with:
-            version: '1.26.0'
+            version: '<version>'
 
     - name: Set Kubeconfig Context
-      uses: azure/k8s-set-context@v3
+      uses: azure/k8s-set-context@v4.0.1
       with:
         method: kubeconfig
         kubeconfig: ${{ secrets.KUBECONFIG }}
