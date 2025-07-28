@@ -65,7 +65,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+        tags: ${{ vars.DOCKERHUB_USERNAME }}/ga-application:${{ github.sha }}
 
     # - name: Docker Image Testing
     #   run: |
@@ -74,16 +74,16 @@ jobs:
 
 
     #     # Run the container in detached mode
-    #     docker run --name solar-system-app -d \
+    #     docker run --name ga-application-app -d \
     #       -p 3000:3000 \
     #       -e MONGO_URI=$MONGO_URI \
     #       -e MONGO_USERNAME=$MONGO_USERNAME \
     #       -e MONGO_PASSWORD=$MONGO_PASSWORD \
-    #       ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+    #       ${{ vars.DOCKERHUB_USERNAME }}/ga-application:${{ github.sha }}
 
 
     #     # Display container IP address
-    #     echo "Container IP:" $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' solar-system-app)
+    #     echo "Container IP:" $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ga-application-app)
 
 
     #     # Test the /live endpoint
